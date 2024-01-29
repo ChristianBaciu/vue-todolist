@@ -24,11 +24,14 @@ createApp({
             // scrive solo la prima task
             this.newTask = ''
         },
+
         removeTask(index){
             // splice rimuove una task, n.2 toglie due task
             this.task.splice(index, 1)
-        }
+        },
 
 
+
+        
     }
 }).mount('#app')
