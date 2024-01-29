@@ -43,26 +43,44 @@
         <h1 class="text-center mt-5">Vue Todolist</h1>
         <div class="container">
             <div class="row align-items-end">
+
                 <div class="col-9">
-                    <label for="" class="form-label"></label>
                     <input 
+                    id="task"
                     type="text"
                     class="form-control"
-                    placeholder="New Task"/>
+                    placeholder="Add New Task"
+                    v-model="newTask">
+                    <!-- v-model associato al return newTask per aggiungere una nuova task-->
                 </div>
+
                 <div class="col-3 text-end">
-                    <button class="btn btn-secondary">Add</button>
+                    <!-- addTask al click del bottone aggiunge una nuova task -->
+                    <button class="btn btn-secondary" @click="addTask">Add</button>
                 </div>
             </div>
 
-            <div class="bg-secondary rounded p-2 mt-4">
-                <div class="d-flex justify-content-between">
-                    <p>Non ci sono Task</p>
+            <div class="bg-secondary rounded p-3 pt-1 mt-4">
+                <div class="d-flex flex-column justify-content-between">
 
-                    <span>
-                        <i class="fa-solid fa-xmark text-danger"></i>
-                    </span>
-    
+                    <div
+
+                        class="d-flex justify-content-between px-2 pt-3 border-bottom"
+                        v-if="task"
+                        v-for="(element, index) in task"
+                        :key="index">
+
+                        <p> {{element}} </p>
+
+                        <span>
+                            <i class="fa-solid fa-xmark text-danger"></i>
+                        </span>
+                    </div>
+
+                    <div v-else="task">
+                        <p>Non c'è nulla</p>
+                    </div>
+
                 </div>
             </div>
 
