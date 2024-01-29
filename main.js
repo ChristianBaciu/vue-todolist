@@ -15,9 +15,19 @@ createApp({
     },
     methods:{
         // unshift aggiunge al primo posto una nuova task
+        // push aggiunge in fondo posto una nuova task
         addTask(){
-            this.task.unshift(this.newTask)
-        }   // push aggiunge in fondo posto una nuova task
+            // se non c'è nessuna parola non crea nessuna task
+            if(this.newTask !== ''){
+                this.task.unshift(this.newTask)
+            }
+            // scrive solo la prima task
+            this.newTask = ''
+        },
+        removeTask(index){
+            // splice rimuove una task, n.2 toglie due task
+            this.task.splice(index, 1)
+        }
 
 
     }
