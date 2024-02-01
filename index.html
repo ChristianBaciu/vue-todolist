@@ -14,25 +14,25 @@
     <!-- Rifare l'esercizio della to do list.
     Questa volta però ogni todo sarà un oggetto, formato da due proprietà:
     - text, una stringa che indica il testo del todo
-    - done, un booleano (true/false) che indica se il todo è stato fatto 
+    - done, un booleano (true/false) che indica se il todo è stato fatto
     oppure no
     MILESTONE 1
     Stampare all'interno di una lista HTML un item per ogni todo.
-    Se la proprietà done è uguale a true, visualizzare il testo del todo 
+    Se la proprietà done è uguale a true, visualizzare il testo del todo
     sbarrato.
     MILESTONE 2
-    Visualizzare a fianco ad ogni item ha una "x": cliccando su di essa, 
+    Visualizzare a fianco ad ogni item ha una "x": cliccando su di essa,
     il todo viene rimosso dalla lista.
     MILESTONE 3
-    Predisporre un campo di input testuale e un pulsante "aggiungi": 
-    cliccando sul pulsante, il testo digitato viene letto e utilizzato 
-    per creare un nuovo todo, che quindi viene aggiunto alla lista dei 
+    Predisporre un campo di input testuale e un pulsante "aggiungi":
+    cliccando sul pulsante, il testo digitato viene letto e utilizzato
+    per creare un nuovo todo, che quindi viene aggiunto alla lista dei
     todo esistenti.
     Bonus:
     1- oltre al click sul pulsante, intercettare anche il tasto ENTER per
     aggiungere il todo alla lista
     2- cliccando sul testo dell'item, invertire il valore della proprietà
-    done del todo corrispondente (se done era uguale a false, impostare 
+    done del todo corrispondente (se done era uguale a false, impostare
     true e viceversa) -->
 
 </head>
@@ -45,11 +45,11 @@
             <div class="row align-items-end">
 
                 <div class="col-11">
-                    <input 
+                    <input
                     type="text"
                     class="form-control"
                     placeholder="Add New Task"
-                    v-model="newTask"
+                    v-model="newTask.text"
                     @keyUp.enter="addTask">
                     <!-- v-model associato al return newTask per aggiungere una nuova task-->
                 </div>
@@ -65,30 +65,29 @@
 
                     <div
                         class="d-flex justify-content-between px-2 pt-3 border-bottom"
-                        v-if="task.length !== 0"
-                        v-for="(element, index) in task"
+                        v-if="tasks.length !== 0"
+                        v-for="(element, index) in tasks"
                         :key="index">
 
-                        <p> {{element}} </p>
-                        <!-- <p :style="{ 'text-decoration': element.done ? 'line-through' : 'none' }"> {{element}} </p> -->
+                        <p @click="checkText(index)"
+                            :class="{'testoBarrato': element.done}">
+                            {{element.text}} 
+                        </p>
 
                         <span>
-                            <i 
-                            class="fa-solid fa-xmark text-danger" 
-                            @click="removeTask(index)">
+                            <i class="fa-solid fa-xmark text-danger"
+                                @click="removeTask(index)">
                             </i>
                         </span>
                     </div>
 
-                    <div 
-                    class="pt-3"
-                    v-else>
+                    <div
+                        class="pt-3"
+                        v-else>
                         <p>Non c'è nessuna Task da fare</p>
                     </div>
-
                 </div>
             </div>
-
         </div>
     </div>
 

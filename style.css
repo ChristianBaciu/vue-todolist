@@ -8,3 +8,7 @@ body{
     background-color: rgb(50, 50, 50);
 }
 
+.testoBarrato{
+    text-decoration: line-through;
+    color: rgb(85, 0, 0);
+}
